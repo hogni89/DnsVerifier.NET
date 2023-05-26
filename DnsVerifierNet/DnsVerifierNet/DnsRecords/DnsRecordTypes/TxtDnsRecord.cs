@@ -6,13 +6,13 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DnsVerifierNet.DnsRecords
+namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
 {
     public class TxtDnsRecord : DnsRecord
     {
         public string Value;
 
-        public TxtDnsRecord(string type, string domainName, int ttl, string value) : base(type, domainName, ttl)
+        public TxtDnsRecord(string domainName, int ttl, string value) : base("TXT", domainName, ttl)
         {
             Value = value;
         }

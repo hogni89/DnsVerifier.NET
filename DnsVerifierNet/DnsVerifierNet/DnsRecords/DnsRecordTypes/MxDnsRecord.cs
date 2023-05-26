@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DnsVerifierNet.DnsRecords
+namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
 {
     public class MxDnsRecord : DnsRecord
     {
         public int Priority { get; set; }
         public string Hostname { get; set; }
         public string IpAddress { get; set; }
-        public MxDnsRecord(string type, string domainName, int ttl, int priority, string hostname, string ipAddress) : base(type, domainName, ttl)
+        public MxDnsRecord(string domainName, int ttl, int priority, string hostname, string ipAddress) : base("MX", domainName, ttl)
         {
             Priority = priority;
             Hostname = hostname;
