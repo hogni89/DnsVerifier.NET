@@ -2,6 +2,7 @@
 
 using DnsVerifierNet.DnsRecords;
 using DnsVerifierNet.DnsRecords.DnsRecordTypes;
+using DnsVerifierNet.XmlParser;
 using System.Runtime.InteropServices;
 using System.Xml;
 using System.Xml.Linq;
@@ -23,22 +24,23 @@ foreach (XElement elements in domains)
         switch (elementName)
         {
             case "DomainName":
+                domain = element.Value;
                 break;
+            case "Records":
 
+                foreach (XElement e in element.Elements())
+                {
+                    var a = new AddressXmlParser();
+                        a.ParseRecordFromXElement(e);
+                }
+
+                break;
             default:
                 break;
 
         }
-        Console.WriteLine(element.Name);
-
-        if(element.Name == "DomainName")
-        {
-            domain = element.Value;
-        }
     }
 }
-
-Console.WriteLine(domain);
     
 
 
