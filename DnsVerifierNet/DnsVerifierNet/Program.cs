@@ -2,6 +2,60 @@
 
 using DnsVerifierNet.DnsRecords;
 using DnsVerifierNet.DnsRecords.DnsRecordTypes;
+using System.Runtime.InteropServices;
+using System.Xml;
+using System.Xml.Linq;
+
+
+var domain = "";
+
+var addressesXml = XDocument.Load(@"C:\Users\hbe\OneDrive - Effo\Documents\Git\DnsVerifier.NET\DnsVerifierNet\DnsVerifierNet\Resources\addresses.xml");
+
+var domains = 
+    from el in addressesXml.Root.Elements()
+    select el;
+
+foreach (XElement elements in domains)
+{
+    foreach (XElement element in elements.Elements())
+    {
+        var elementName = element.Name.ToString();
+        switch (elementName)
+        {
+            case "DomainName":
+                break;
+
+            default:
+                break;
+
+        }
+        Console.WriteLine(element.Name);
+
+        if(element.Name == "DomainName")
+        {
+            domain = element.Value;
+        }
+    }
+}
+
+Console.WriteLine(domain);
+    
+
+
+/*
+var ds = XElement.Load(@"C:\Users\hbe\OneDrive - Effo\Documents\Git\DnsVerifier.NET\DnsVerifierNet\DnsVerifierNet\Resources\addresses.xml");
+
+foreach (var element in addressesXml.Elements())
+{
+    Console.WriteLine(element);
+}
+
+foreach (var element in ds.Elements())
+{
+    Console.WriteLine(element);
+}
+
+
 
 var domainName = "google.com";
 
@@ -28,3 +82,4 @@ foreach (var r in records)
     Console.WriteLine(r.ToString());
 }
 
+*/

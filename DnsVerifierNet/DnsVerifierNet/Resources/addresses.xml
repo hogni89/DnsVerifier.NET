@@ -1,16 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Domains>
+<Domains xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Domain>
 		<DomainName>google.com</DomainName>
 		<Records>
 			<ARecord>
 				<ttl>300</ttl>
+				<prefix xsi:nil="true"/>
 				<address>142.251.41.14</address>
 			</ARecord>
+			<ARecord>
+				<ttl>300</ttl>
+				<prefix></prefix>
+				<address>142.251.41.14</address>
+			</ARecord>
+			<TxtRecord>
+				<ttl>300</ttl>
+				<Value>This is a TXT test</Value>
+			</TxtRecord>
+			<MxRecord>
+				<ttl>300</ttl>
+				<Priority>10</Priority>
+				<Hostname>smtp.google.com</Hostname>
+				<IpAddress>172.253.115.26</IpAddress>
+			</MxRecord>
 			<CnameRecord>
-			    <ttl>300</ttl>
-			    <CanonicalName></CanonicalName>
+				<ttl>300</ttl>
+				<prefix>autodiscover</prefix>
+				<CanonicalName>autodiscover.office.com</CanonicalName>
 			</CnameRecord>
+			<NsRecord>
+				<ttl>86400</ttl>
+				<Domain>ns1.google.com</Domain>
+				<IpAddress>216.239.32.10</IpAddress>
+			</NsRecord>
+		</Records>
+	</Domain>
+	<Domain>
+		<DomainName>microsoft.com</DomainName>
+		<Records>
+			<ARecord>
+				<ttl>300</ttl>
+				<prefix xsi:nil="true"/>
+				<address>142.251.41.14</address>
+			</ARecord>
+			<ARecord>
+				<ttl>300</ttl>
+				<prefix></prefix>
+				<address>142.251.41.14</address>
+			</ARecord>
+			<TxtRecord>
+				<ttl>300</ttl>
+				<Value>This is a TXT test</Value>
+			</TxtRecord>
+			<MxRecord>
+				<ttl>300</ttl>
+				<Priority>10</Priority>
+				<Hostname>smtp.google.com</Hostname>
+				<IpAddress>172.253.115.26</IpAddress>
+			</MxRecord>
+			<CnameRecord>
+				<ttl>300</ttl>
+				<prefix>autodiscover</prefix>
+				<CanonicalName>autodiscover.office.com</CanonicalName>
+			</CnameRecord>
+			<NsRecord>
+				<ttl>86400</ttl>
+				<Domain>ns1.google.com</Domain>
+				<IpAddress>216.239.32.10</IpAddress>
+			</NsRecord>
 		</Records>
 	</Domain>
 </Domains>
