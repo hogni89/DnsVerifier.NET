@@ -27,5 +27,19 @@ namespace DnsVerifierNet.Records
             return result;
         }
 
+        public string ToString(string? domainName)
+        {
+            var result = "";
+            if (domainName == null)
+            {
+                result = this.ToString();
+            } else
+            {
+                result = "type: " + Type + ", domain name: " + domainName + ", ttl: " + Ttl.ToString();
+            }
+
+            return result;
+        }
+
     }
 }

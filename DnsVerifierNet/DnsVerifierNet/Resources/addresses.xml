@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Domains>
+	<Domain>
+		<DomainName>google.com</DomainName>
+		<Records>
+			<ARecord>
+				<ttl>300</ttl>
+				<address>142.251.41.14</address>
+			</ARecord>
+			<CnameRecord>
+			    <ttl>300</ttl>
+			    <CanonicalName></CanonicalName>
+			</CnameRecord>
+		</Records>
+	</Domain>
+</Domains>

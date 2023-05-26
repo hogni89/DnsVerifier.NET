@@ -6,15 +6,26 @@ namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
     {
 
         private string Address { get; set; }
+        private string? Prefix { get; set; }
 
-        public ADnsRecord(string domainName, int ttl, string address) : base("A", domainName, ttl)
+        public ADnsRecord(string domainName, int ttl, string? prefix, string address) : base("A", domainName, ttl)
         {
             Address = address;
+            Prefix = prefix;
         }
 
         public override string ToString()
         {
-            var result = base.ToString() + ", address: " + Address;
+            var result = "";
+
+            if (Prefix == null)
+            {
+                result = base.ToString() + ", address: " + Address;
+            } else
+            {
+                result = base.ToString(Prefix + "." + DomainName) + ", address: " + Address;
+            }
+
             return result;
         }
     }
