@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,12 @@ namespace DnsVerifierNet.Records
             Type = type;
             DomainName = domainName;
             Ttl = ttl;
+        }
+
+        public override string ToString()
+        {
+            var result = "type: " + Type + ", domain name: " + DomainName + ", ttl: " + Ttl.ToString();
+            return result;
         }
 
     }

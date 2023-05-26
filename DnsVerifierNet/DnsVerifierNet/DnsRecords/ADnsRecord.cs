@@ -17,9 +17,9 @@ namespace DnsVerifierNet.DnsRecords
             this.Address = address; 
         }
 
-        public string getAsString()
+        public override string ToString() 
         {
-            var result = "type: " + Type + ", domain name: " + DomainName + ", ttl: " + Ttl.ToString() + ", address: " + Address;
+            var result = base.ToString() + ", address: " + Address;
             return result;
         }
     }
