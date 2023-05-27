@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DnsRecordList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <DnsRecordArray>
-    <DnsRecordObject xsi:type="ADnsRecord">
+  <DnsRecordArray />
+  <ADnsRecordArray>
+    <ADnsRecordObject>
       <Domain>google.com</Domain>
       <ttl>300</ttl>
-      <Address>142.251.41.14</Address>
-    </DnsRecordObject>
-    <DnsRecordObject xsi:type="ADnsRecord">
+      <Addresses>
+        <IpAddress>172.217.169.14</IpAddress>
+      </Addresses>
+    </ADnsRecordObject>
+  </ADnsRecordArray>
+  <CnameDnsRecordArray>
+    <CnameDnsRecordObject>
       <Domain>google.com</Domain>
       <ttl>300</ttl>
-      <Address>142.251.41.15</Address>
-      <Prefix>test</Prefix>
-    </DnsRecordObject>
-    <DnsRecordObject xsi:type="TxtDnsRecord">
-      <Domain>google.com</Domain>
-      <ttl>300</ttl>
-      <Value>This is a text record</Value>
-    </DnsRecordObject>
-    <DnsRecordObject xsi:type="MxDnsRecord">
+      <canonicalName>autodiscover.office.com</canonicalName>
+      <prefix>autodiscover</prefix>
+    </CnameDnsRecordObject>
+  </CnameDnsRecordArray>
+  <MxDnsRecordArray>
+    <MxDnsRecordObject>
       <Domain>google.com</Domain>
       <ttl>300</ttl>
       <Priority>10</Priority>
       <Hostname>smtp.google.com</Hostname>
       <IpAddress>172.253.115.26</IpAddress>
-    </DnsRecordObject>
-    <DnsRecordObject xsi:type="CnameDnsRecord">
-      <Domain>google.com</Domain>
-      <ttl>300</ttl>
-      <canonicalName>autodiscover.office.com</canonicalName>
-      <prefix>autodiscover</prefix>
-    </DnsRecordObject>
-    <DnsRecordObject xsi:type="NsDnsRecord">
+    </MxDnsRecordObject>
+  </MxDnsRecordArray>
+  <NsDnsRecordArray>
+    <NsDnsRecordObject>
       <Domain>google.com</Domain>
       <ttl>86400</ttl>
       <Value>ns1.google.com</Value>
       <IpAddress>216.239.32.10</IpAddress>
-    </DnsRecordObject>
-  </DnsRecordArray>
+    </NsDnsRecordObject>
+  </NsDnsRecordArray>
+  <TxtDnsRecordArray>
+    <TxtDnsRecordObject>
+      <Domain>google.com</Domain>
+      <ttl>300</ttl>
+      <Value>This is a text record</Value>
+    </TxtDnsRecordObject>
+  </TxtDnsRecordArray>
 </DnsRecordList>

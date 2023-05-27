@@ -13,13 +13,17 @@ namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
         [XmlElement("prefix")]
         public string Prefix;
 
-        public CnameDnsRecord() { }
+        public CnameDnsRecord() 
+        {
+            RecordType = "Cname";
+        }
         public CnameDnsRecord(string domainName, int ttl, string prefix, string canonicalName)
         {
             this.Domain = domainName;
             this.Ttl = ttl;
             CanonicalName = canonicalName;
             Prefix = prefix;
+            RecordType = "Cname";
         }
     }
 }

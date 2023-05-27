@@ -9,12 +9,16 @@ namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
         [XmlElement("Value")]
         public string Value { get; set; }
 
-        public TxtDnsRecord() { }
+        public TxtDnsRecord() 
+        {
+            RecordType = "Txt";
+        }
         public TxtDnsRecord(string domainName, int ttl, string value)
         {
             Value = value;
             this.Domain = domainName;
             this.Ttl = ttl;
+            RecordType = "Txt";
         }
 
     }

@@ -16,7 +16,10 @@ namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
         [XmlElement("IpAddress")]
         public string IpAddress { get; set; }
 
-        public MxDnsRecord() { }
+        public MxDnsRecord() 
+        {
+            RecordType = "Mx";     
+        }
         public MxDnsRecord(string domainName, int ttl, int priority, string hostname, string ipAddress)
         {
             this.Domain = domainName;
@@ -24,6 +27,7 @@ namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
             Priority = priority;
             Hostname = hostname;
             IpAddress = ipAddress;
+            RecordType = "Mx";
         }
     }
 }

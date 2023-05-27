@@ -6,20 +6,25 @@ namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
     [XmlType("ADnsRecord")]
     public class ADnsRecord : DnsRecord
     {
-        [XmlElement("Address")]
-        public string Address { get; set; }
+        [XmlArray("Addresses")]
+        [XmlArrayItem("IpAddress")]
+        public List<string> Addresses { get; set; }
 
         [XmlElement("Prefix")]
         public string Prefix { get; set; }
 
-        public ADnsRecord() { }
+        public ADnsRecord() 
+        {
+            this.RecordType = "A";
+        }
 
-        public ADnsRecord(string domain, int ttl, string prefix, string address)
+        public ADnsRecord(string domain, int ttl, string prefix, List<string> address)
         {
             this.Ttl = ttl;
             this.Domain = domain;
-            this.Address = address;
+            this.Addresses = address;
             this.Prefix = prefix;
+            this.RecordType = "A";
         }
     }
 }

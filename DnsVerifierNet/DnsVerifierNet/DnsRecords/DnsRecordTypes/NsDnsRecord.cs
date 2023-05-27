@@ -12,7 +12,10 @@ namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
         [XmlElement("IpAddress")]
         public string IpAddress;
 
-        public NsDnsRecord() { }
+        public NsDnsRecord() 
+        {
+            RecordType = "Ns";
+        }
 
         public NsDnsRecord(string domainName, int ttl, string value, string ipAddress)
         {
@@ -20,6 +23,7 @@ namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
             this.Ttl = ttl;
             IpAddress = ipAddress;
             Value = value;
+            RecordType = "Ns";
         }
     }
 }
