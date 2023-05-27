@@ -30,7 +30,7 @@ foreach (XElement elements in domains)
 
                 foreach (XElement e in element.Elements())
                 {
-                    var a = new AddressXmlParser();
+                    var a = new AddressXmlParser(domain);
                         a.ParseRecordFromXElement(e);
                 }
 
