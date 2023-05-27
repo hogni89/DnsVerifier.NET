@@ -1,27 +1,25 @@
 ﻿using DnsVerifierNet.Records;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DnsVerifierNet.DnsRecords.DnsRecordTypes
 {
+    [XmlType("NsDnsRecord")]
     public class NsDnsRecord : DnsRecord
     {
-        public string Domain;
+        [XmlElement("Value")]
+        public string Value;
+
+        [XmlElement("IpAddress")]
         public string IpAddress;
 
-        public NsDnsRecord(string domainName, int ttl, string domain, string ipAddress) : base("NS", domainName, ttl)
-        {
-            IpAddress = ipAddress;
-            Domain = domainName;
-        }
+        public NsDnsRecord() { }
 
-        public override string ToString()
+        public NsDnsRecord(string domainName, int ttl, string value, string ipAddress)
         {
-            var result = base.ToString() + ", domain: " + Domain + ", ip address: " + IpAddress;
-            return result;
+            this.Domain = domainName;
+            this.Ttl = ttl;
+            IpAddress = ipAddress;
+            Value = value;
         }
     }
 }

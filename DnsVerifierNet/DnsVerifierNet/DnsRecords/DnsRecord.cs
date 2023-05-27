@@ -1,45 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DnsVerifierNet.DnsRecords.DnsRecordTypes;
+using System.Xml.Serialization;
 
 namespace DnsVerifierNet.Records
 {
-    public class DnsRecord 
+    [XmlType("DnsRecord")] // define Type
+    [XmlInclude(typeof(ADnsRecord)), XmlInclude(typeof(TxtDnsRecord))]
+    // include type class SpecialPerson and class SuperPerson
+    public class DnsRecord
     {
+        [XmlElement("Domain", DataType = "string")]
+        public string Domain { get; set; }
 
-        public string Type { get; set; }
-        public string DomainName { get; set; }
+        [XmlElement("ttl")]
         public int Ttl { get; set; }
 
-        public DnsRecord(string type, string domainName, int ttl)
+        // Konstruktoren 
+        public DnsRecord() { }
+
+        public DnsRecord(int ttl, string domain)
         {
-            Type = type;
-            DomainName = domainName;
-            Ttl = ttl;
+            this.Ttl = ttl;
+            this.Domain = domain;
         }
-
-        public override string ToString()
-        {
-            var result = "type: " + Type + ", domain name: " + DomainName + ", ttl: " + Ttl.ToString();
-            return result;
-        }
-
-        public string ToString(string? domainName)
-        {
-            var result = "";
-            if (domainName == null)
-            {
-                result = this.ToString();
-            } else
-            {
-                result = "type: " + Type + ", domain name: " + domainName + ", ttl: " + Ttl.ToString();
-            }
-
-            return result;
-        }
-
     }
 }

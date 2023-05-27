@@ -1,65 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using DnsVerifierNet.DnsRecords;
+using DnsVerifierNet.DnsRecordList;
 using DnsVerifierNet.DnsRecords.DnsRecordTypes;
-using DnsVerifierNet.XmlParser;
-using System.Runtime.InteropServices;
-using System.Xml;
-using System.Xml.Linq;
+using DnsVerifierNet.Records;
+using System.Xml.Serialization;
 
 
-var domain = "";
-
-var addressesXml = XDocument.Load(@"C:\Users\hbe\OneDrive - Effo\Documents\Git\DnsVerifier.NET\DnsVerifierNet\DnsVerifierNet\Resources\addresses.xml");
-
-var domains = 
-    from el in addressesXml.Root.Elements()
-    select el;
-
-foreach (XElement elements in domains)
-{
-    foreach (XElement element in elements.Elements())
-    {
-        var elementName = element.Name.ToString();
-        switch (elementName)
-        {
-            case "DomainName":
-                domain = element.Value;
-                break;
-            case "Records":
-
-                foreach (XElement e in element.Elements())
-                {
-                    var a = new AddressXmlParser(domain);
-                        a.ParseRecordFromXElement(e);
-                }
-
-                break;
-            default:
-                break;
-
-        }
-    }
-}
-    
-
-
-/*
-var ds = XElement.Load(@"C:\Users\hbe\OneDrive - Effo\Documents\Git\DnsVerifier.NET\DnsVerifierNet\DnsVerifierNet\Resources\addresses.xml");
-
-foreach (var element in addressesXml.Elements())
-{
-    Console.WriteLine(element);
-}
-
-foreach (var element in ds.Elements())
-{
-    Console.WriteLine(element);
-}
-
-
+var xmlPath = @"C:\Users\hbe\OneDrive - Effo\Documents\Git\DnsVerifier.NET\DnsVerifierNet\DnsVerifierNet\Resources\addresses.xml";
 
 var domainName = "google.com";
+
+var dnsRecords = new DnsRecordList();
 
 var aRecord1 = new ADnsRecord(domainName, 300, null, "142.251.41.14");
 var aRecord2 = new ADnsRecord(domainName, 300, "test", "142.251.41.15");
@@ -69,19 +20,30 @@ var CnameRecord = new CnameDnsRecord(domainName, 300, "autodiscover", "autodisco
 var NsRecord = new NsDnsRecord(domainName, 86400, "ns1.google.com", "216.239.32.10");
 
 
-var DnsRecords = new DnsRecords();
-DnsRecords.AddDnsRecord(aRecord1);
-DnsRecords.AddDnsRecord(aRecord2);
-DnsRecords.AddDnsRecord(txtRecord); 
-DnsRecords.AddDnsRecord(MxRecord);
-DnsRecords.AddDnsRecord(CnameRecord);   
-DnsRecords.AddDnsRecord(NsRecord);
+dnsRecords.AddDnsRecord(aRecord1);
+dnsRecords.AddDnsRecord(aRecord2);
+dnsRecords.AddDnsRecord(txtRecord);
+dnsRecords.AddDnsRecord(MxRecord);
+dnsRecords.AddDnsRecord(CnameRecord);
+dnsRecords.AddDnsRecord(NsRecord);
 
-var records = DnsRecords.GetDnsRecords();
+// Serialize 
+Type[] dnsRecordTypes = {
+    typeof(DnsRecord),
+    typeof(ADnsRecord),
+    typeof(TxtDnsRecord),
+    typeof(MxDnsRecord),
+    typeof(CnameDnsRecord),
+    typeof(NsDnsRecord)
+};
+XmlSerializer serializer = new XmlSerializer(typeof(DnsRecordList), dnsRecordTypes);
+FileStream fs = new FileStream(xmlPath, FileMode.Create);
+serializer.Serialize(fs, dnsRecords);
+fs.Close();
+dnsRecords = null;
 
-foreach (var r in records)
-{
-    Console.WriteLine(r.ToString());
-}
-
-*/
+// Deserialize 
+fs = new FileStream(xmlPath, FileMode.Open);
+dnsRecords = (DnsRecordList)serializer.Deserialize(fs);
+serializer.Serialize(Console.Out, dnsRecords);
+Console.ReadLine();
